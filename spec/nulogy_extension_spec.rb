@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-require_relative '../lib/nulogy_extensions'
+require_relative '../lib/nulogy_extension'
 
-describe NulogyExtensions do
+describe NulogyExtension do
 
   it 'converts a date string to a julian date' do
     jan_1 = '2015-01-01'

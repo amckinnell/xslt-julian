@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'nokogiri'
 
-require 'nulogy_extensions'
+require 'nulogy_extension'
 
 describe 'XSLT extensions' do
 
@@ -18,27 +18,50 @@ describe 'XSLT extensions' do
     XML
   end
 
-  let(:xslt) do
-    <<-XSLT
-    <?xml version="1.0" encoding="utf-8"?>
-      <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          xmlns:nu="http://nulogy.com/functions" extension-element-prefixes="nu">
-        <xsl:template match="alien/landed">
-          <result><xsl:value-of select="nu:to_jd(text())"/></result>
-        </xsl:template>
-      </xsl:stylesheet>
-    XSLT
+  before do
+    Nokogiri::XSLT.register 'http://nulogy.com/functions', NulogyExtension
   end
 
   it 'transforms an XML document using extensions' do
-    Nokogiri::XSLT.register 'http://nulogy.com/functions', NulogyExtensions
+    xslt = build_xslt_that_matches('alien/landed')
 
-    xml_doc  = Nokogiri::XML(xml)
-    xslt_doc  = Nokogiri::XSLT(xslt)
-
-    transformed_xml = xslt_doc.transform(xml_doc)
+    transformed_xml = transform(xml, xslt)
 
     expect(transformed_xml.xpath('//result').text).to eq('2457024')
+  end
+
+  context 'errors' do
+
+    it 'fails when the date format cannot be parsed' do
+      xslt = build_xslt_that_matches('alien/name')
+
+      expect { transform(xml, xslt) }.to raise_error(ArgumentError, /Invalid date/)
+    end
+
+    it 'fails when we pass a node set by mistake' do
+      xslt = build_xslt_that_matches('aliens')
+
+      expect { transform(xml, xslt) }.to raise_error(ArgumentError, /Invalid date/)
+    end
+
+  end
+
+  private
+
+  def build_xslt_that_matches(xpath_expression)
+    <<-XSLT
+      <?xml version="1.0" encoding="utf-8"?>
+        <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+            xmlns:nu="http://nulogy.com/functions" extension-element-prefixes="nu">
+          <xsl:template match="#{xpath_expression}">
+            <result><xsl:value-of select="nu:to_jd(text())"/></result>
+          </xsl:template>
+        </xsl:stylesheet>
+    XSLT
+  end
+
+  def transform(xml, xslt)
+    Nokogiri::XSLT(xslt).transform(Nokogiri::XML(xml))
   end
 
 end
