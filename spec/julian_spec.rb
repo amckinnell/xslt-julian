@@ -1,9 +1,10 @@
 require 'spec_helper'
-require 'julian'
+
+def to_jd(date)
+  Date.parse(date).jd
+end
 
 describe 'Convert to a Julian Date' do
-
-  subject { Julian }
 
   it 'convert a date to a julian date' do
     jan_1 = Date.new(2015, 01, 01)
@@ -16,8 +17,8 @@ describe 'Convert to a Julian Date' do
   end
 
   it 'converts a date string to a julian date' do
-    jd_1 = subject.to_jd('2015-01-01')
-    jd_3 = subject.to_jd('2015-01-03')
+    jd_1 = to_jd('2015-01-01')
+    jd_3 = to_jd('2015-01-03')
 
     p "January 1: #{jd_1}"
     p "January 3: #{jd_3}"
