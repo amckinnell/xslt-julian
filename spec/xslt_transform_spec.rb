@@ -1,9 +1,9 @@
 require 'spec_helper'
-require 'nokogiri'
 
+require 'nokogiri'
 require 'nulogy_extension'
 
-describe 'XSLT extensions' do
+describe 'XSLT transforms using extensions' do
 
   let(:xml) do
     <<-XML
@@ -19,7 +19,7 @@ describe 'XSLT extensions' do
   end
 
   before do
-    Nokogiri::XSLT.register 'http://nulogy.com/functions', NulogyExtension
+    Nokogiri::XSLT.register 'http://nulogy.com/extensions', NulogyExtension
   end
 
   it 'transforms an XML document using extensions' do
@@ -52,7 +52,7 @@ describe 'XSLT extensions' do
     <<-XSLT
       <?xml version="1.0" encoding="utf-8"?>
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-            xmlns:nu="http://nulogy.com/functions" extension-element-prefixes="nu">
+            xmlns:nu="http://nulogy.com/extensions" extension-element-prefixes="nu">
           <xsl:template match="#{xpath_expression}">
             <result><xsl:value-of select="nu:to_jd(text())"/></result>
           </xsl:template>
