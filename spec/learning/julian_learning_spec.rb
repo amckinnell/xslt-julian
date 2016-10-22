@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe 'Convert to a Julian Date' do
   it 'convert a date to a julian date' do
     january_1 = Date.new(2015, 1, 1)

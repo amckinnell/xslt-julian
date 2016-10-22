@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 require_relative '../lib/nulogy_extension'
 
 RSpec.describe NulogyExtension do

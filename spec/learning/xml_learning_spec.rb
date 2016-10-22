@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'nokogiri'
 
 RSpec.describe 'XML learning' do
