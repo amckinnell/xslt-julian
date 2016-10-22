@@ -1,9 +1,5 @@
 require 'spec_helper'
 
-def to_jd(date)
-  Date.parse(date).jd
-end
-
 RSpec.describe 'Convert to a Julian Date' do
   it 'convert a date to a julian date' do
     jan_1 = Date.new(2015, 1, 1)
@@ -23,5 +19,9 @@ RSpec.describe 'Convert to a Julian Date' do
     p "January 3: #{jd_3}"
 
     expect(jd_3 - jd_1).to eq(2)
+  end
+
+  def to_jd(date)
+    Date.parse(date).jd
   end
 end
