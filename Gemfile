@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'nokogiri'
-gem 'rspec'
-gem 'rubocop'
+gem 'nokogiri', '1.6.8'
+gem 'rspec', '3.5.0'
+gem 'rubocop', '0.43.0'
