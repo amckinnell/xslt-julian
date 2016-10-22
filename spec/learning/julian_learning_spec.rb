@@ -2,13 +2,13 @@ require 'spec_helper'
 
 RSpec.describe 'Convert to a Julian Date' do
   it 'convert a date to a julian date' do
-    jan_1 = Date.new(2015, 1, 1)
-    jan_3 = Date.new(2015, 1, 3)
+    january_1 = Date.new(2015, 1, 1)
+    january_3 = Date.new(2015, 1, 3)
 
-    p "January 1: #{jan_1} becomes #{jan_1.jd}"
-    p "January 3: #{jan_3} becomes #{jan_3.jd}"
+    p "January 1: #{january_1} becomes #{january_1.jd}"
+    p "January 3: #{january_3} becomes #{january_3.jd}"
 
-    expect(jan_3.jd - jan_1.jd).to eq(2)
+    expect(january_3.jd - january_1.jd).to eq(2)
   end
 
   it 'converts a date string to a julian date' do
