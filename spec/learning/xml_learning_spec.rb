@@ -2,7 +2,6 @@ require 'spec_helper'
 require 'nokogiri'
 
 describe 'XML learning' do
-
   let(:xml) do
     <<-XML
       <root>
@@ -17,14 +16,13 @@ describe 'XML learning' do
   end
 
   it 'uses XPath to find things in an XML document' do
-    xml_doc  = Nokogiri::XML(xml)
+    xml_doc = Nokogiri::XML(xml)
 
     expect(xml_doc.xpath('//name').text).to eq('Alf')
     expect(xml_doc.xpath('string(//name/@colour)')).to eq('brown')
   end
 
   context 'parsing options' do
-
     let(:bad_xml) do
       <<-XML
         <root>
@@ -49,7 +47,5 @@ describe 'XML learning' do
 
       Nokogiri::XML(bad_xml, nil, nil, options)
     end
-
   end
-
 end

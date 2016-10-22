@@ -5,10 +5,9 @@ def to_jd(date)
 end
 
 describe 'Convert to a Julian Date' do
-
   it 'convert a date to a julian date' do
-    jan_1 = Date.new(2015, 01, 01)
-    jan_3 = Date.new(2015, 01, 03)
+    jan_1 = Date.new(2015, 1, 1)
+    jan_3 = Date.new(2015, 1, 3)
 
     p "January 1: #{jan_1} becomes #{jan_1.jd}"
     p "January 3: #{jan_3} becomes #{jan_3.jd}"
@@ -25,5 +24,4 @@ describe 'Convert to a Julian Date' do
 
     expect(jd_3 - jd_1).to eq(2)
   end
-
 end

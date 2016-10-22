@@ -2,7 +2,6 @@ require 'spec_helper'
 require 'nokogiri'
 
 describe 'XSLT learning' do
-
   let(:xml) do
     <<-XML
       <root>
@@ -28,12 +27,11 @@ describe 'XSLT learning' do
   end
 
   it 'transforms an XML document' do
-    xml_doc  = Nokogiri::XML(xml)
-    xslt_doc  = Nokogiri::XSLT(xslt)
+    xml_doc = Nokogiri::XML(xml)
+    xslt_doc = Nokogiri::XSLT(xslt)
 
     transformed_xml = xslt_doc.transform(xml_doc)
 
     expect(transformed_xml.xpath('//result').text).to eq('testing 1... 2... 3...')
   end
-
 end

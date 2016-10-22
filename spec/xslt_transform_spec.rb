@@ -4,7 +4,6 @@ require 'nokogiri'
 require 'nulogy_extension'
 
 describe 'XSLT transforms using extensions' do
-
   let(:xml) do
     <<-XML
       <root>
@@ -31,7 +30,6 @@ describe 'XSLT transforms using extensions' do
   end
 
   context 'errors' do
-
     it 'fails when the date format cannot be parsed' do
       xslt = build_xslt_that_matches('alien/name')
 
@@ -43,7 +41,6 @@ describe 'XSLT transforms using extensions' do
 
       expect { transform(xml, xslt) }.to raise_error(ArgumentError, /Invalid date/)
     end
-
   end
 
   private
@@ -63,5 +60,4 @@ describe 'XSLT transforms using extensions' do
   def transform(xml, xslt)
     Nokogiri::XSLT(xslt).transform(Nokogiri::XML(xml))
   end
-
 end
