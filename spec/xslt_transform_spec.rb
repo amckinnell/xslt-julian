@@ -3,7 +3,7 @@ require 'spec_helper'
 require 'nokogiri'
 require 'nulogy_extension'
 
-describe 'XSLT transforms using extensions' do
+RSpec.describe 'XSLT transforms using extensions' do
   let(:xml) do
     <<-XML
       <root>

@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'nokogiri'
 
-describe 'XML learning' do
+RSpec.describe 'XML learning' do
   let(:xml) do
     <<-XML
       <root>

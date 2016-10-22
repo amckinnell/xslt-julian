@@ -4,7 +4,7 @@ def to_jd(date)
   Date.parse(date).jd
 end
 
-describe 'Convert to a Julian Date' do
+RSpec.describe 'Convert to a Julian Date' do
   it 'convert a date to a julian date' do
     jan_1 = Date.new(2015, 1, 1)
     jan_3 = Date.new(2015, 1, 3)
